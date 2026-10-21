@@ -61,7 +61,8 @@
         </div>
 
         <!-- recette colonnes -->
-        <div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-4">
+        <!--g-->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 py-4">
           <section class="bg-white border border-green-200 rounded-xl p-4">
             <h2 class="font-semibold mb-3">Réserve de recettes</h2>
             <div class="grid gap-2">
@@ -73,7 +74,7 @@
                 </div>
                 <div class="flex gap-2">
                   <span class="text-xs px-2 py-0.5 rounded-full bg-green-100"
-                   >Entrée</span
+                    >Entrée</span
                   >
                   <span class="text-xs px-2 py-0.5 rounded-full bg-green-100"
                     >Végétarien</span
@@ -97,9 +98,211 @@
             </div>
           </section>
 
-          <section class="bg-white border border-green-200 rounded-xl p-4">
-            <h2 class="font-semibold mb-3">Menu de la semaine</h2>
+          <section
+            class="bg-white border border-green-200 rounded-xl p-4 grid grid-cols-3 col-span-3 "
+          >
             <!-- les 5 jours ghadi ydkhlo hna -->
+            <article
+              class="border border-green-200 rounded-xl p-3 grid gap-2  "
+            >
+              <strong>Lundi</strong>
+
+              <div class="bg-sky-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="lundi-entree">Entrée</label>
+                <select
+                  id="lundi-entree"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div
+                class="bg-orange-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm"
+              >
+                <label for="lundi-plat">Plat</label>
+                <select
+                  id="lundi-plat"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="bg-pink-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="lundi-dessert">Dessert</label>
+                <select
+                  id="lundi-dessert"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="font-semibold">Total : 0 DH / 50 DH max</div>
+            </article>
+
+            <article
+              class="border border-green-200 rounded-xl p-3 grid gap-2"
+            >
+              <strong>Mardi</strong>
+
+              <div class="bg-sky-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="Mardi-entree">Entrée</label>
+                <select
+                  id="Mardi-entree"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div
+                class="bg-orange-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm"
+              >
+                <label for="Mardi-plat">Plat</label>
+                <select
+                  id="Mardi-plat"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="bg-pink-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="lundi-dessert">Dessert</label>
+                <select
+                  id="lundi-dessert"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="font-semibold">Total : 0 DH / 50 DH max</div>
+            </article>
+
+            <article
+              class="border border-green-200 rounded-xl p-3 grid gap-2"
+            >
+              <strong>Mercredi</strong>
+
+              <div class="bg-sky-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="Mercredi-entree">Entrée</label>
+                <select
+                  id="Mercredi-entree"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div
+                class="bg-orange-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm"
+              >
+                <label for="Mercredi-plat">Plat</label>
+                <select
+                  id="Mercredi-plat"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="bg-pink-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="lundi-dessert">Dessert</label>
+                <select
+                  id="mercredi -dessert"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="font-semibold">Total : 0 DH / 50 DH max</div>
+            </article>
+
+            <article
+              class="border border-green-200 rounded-xl p-3 grid gap-2"
+            >
+              <strong>jeudi</strong>
+
+              <div class="bg-sky-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="jeudi-entree">Entrée</label>
+                <select
+                  id="jeudi-entree"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div
+                class="bg-orange-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm"
+              >
+                <label for="jeudi-plat">Plat</label>
+                <select
+                  id="jeudi-plat"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="bg-pink-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="lundi-dessert">Dessert</label>
+                <select
+                  id="jeudi-dessert"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="font-semibold">Total : 0 DH / 50 DH max</div>
+            </article>
+
+
+
+            <article
+              class="border border-green-200 rounded-xl p-3 grid gap-2"
+            >
+              <strong>vendredi</strong>
+
+              <div class="bg-sky-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="Mardi-entree">Entrée</label>
+                <select
+                  id="vendredi-entree"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div
+                class="bg-orange-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm"
+              >
+                <label for="vendredi-plat">Plat</label>
+                <select
+                  id="vendredi-plat"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="bg-pink-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="vendredi-dessert">Dessert</label>
+                <select
+                  id="vendredi-dessert"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="font-semibold">Total : 0 DH / 50 DH max</div>
+            </article>
           </section>
         </div>
       </div>
