@@ -1,18 +1,342 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="output.css">
-</head>
-<body>
-    <header >
-    <h1>🍽️ Cantine YouCode</h1>
-    <button>
-      + Ajouter une recette
-    </button>
-  </header>
-  
-</body>
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cantine YouCode</title>
+    <link rel="stylesheet" href="output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-['Open_Sans']">
+    <main class="bg-green-200 min-h-screen ">
+      <nav
+        class="bg-white sticky top-0 z-10 flex items-center justify-between p-4"
+      >
+        <div class="flex items-center gap-3">
+          <span><img src="logo cuisine.avif" alt="" class="w-15 h-auto rounded-sm"></span>
+          <h2 class="text-green-950 font-bold">
+            cantine <span class="font-light text-green-800">youcode</span>
+          </h2>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button
+            type="button"
+            class="bg-white px-3 py-2 rounded-xl hover:bg-gray-100"
+          >
+            🌓 Thème
+          </button>
+          <button
+            type="button"
+            class="bg-green-700 hover:bg-green-800 font-bold text-white px-3 py-2 rounded-xl"
+          >
+            + Ajouter une recette
+          </button>
+        </div>
+      </nav>
+
+      <div class="max-w-6xl mx-auto p-4 grid grap-4">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="bg-white border border-green-200 rounder-xl px-4 py-3">
+            <b id="Reserve" class="block text-2xl">0</b>
+            <span class="text-sm text-gray-500">Plats en réserve</span>
+          </div>
+          <div class="bg-white border border-green-200 rounded-xl px-4 py-3">
+            <b id="sDays" class="block text-2xl">0/5</b>
+            <span class="text-sm text-gray-500">Jours prêts</span>
+          </div>
+          <div class="bg-white border border-green-200 rounded-xl px-4 py-3">
+            <b id="sWeek" class="block text-2xl">0 DH</b>
+            <span class="text-sm text-gray-500">Coût semaine / apprenant</span>
+          </div>
+          <div class="bg-white border border-green-200 rounded-xl px-4 py-3">
+            <b id="sBal" class="block text-2xl">—</b>
+            <span class="text-sm text-gray-500">Équilibre alimentaire</span>
+          </div>
+        </div>
+
+        <!-- recette colonnes -->
+        <!--g-->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 py-4 ">
+          <section class="bg-white border border-green-200 rounded-xl p-4">
+            <h2 class="font-semibold mb-3">Réserve de recettes</h2>
+            <div class="grid gap-2">
+              <!-- Carte modèle -->
+              <div class="border border-green-200 rounded-xl p-3 grid gap-2">
+                <div class="flex items-center justify-between">
+                  <strong>Velouté de légumes</strong>
+                  <span>5 DH</span>
+                </div>
+                <div class="flex gap-2">
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-green-100"
+                    >Entrée</span
+                  >
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-green-100"
+                    >Végétarien</span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    type="button"
+                    class="text-sm px-2 py-1 rounded-lg border border-green-300 hover:bg-green-100"
+                  >
+                    Modifier
+                  </button>
+                  <button
+                    type="button"
+                    class="text-sm px-2 py-1 rounded-lg bg-red-600 text-white hover:bg-red-700"
+                  >
+                    Supprimer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="bg-white border border-green-200 rounded-xl gap-4  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 col-span-3 "
+          >
+            <!-- les 5 jours ghadi ydkhlo hna -->
+            <article
+              class="border border-green-200 rounded-xl p-3 grid gap-2  "
+            >
+              <strong>Lundi</strong>
+
+              <div class="bg-sky-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="lundi-entree">Entrée</label>
+                <select
+                  id="lundi-entree"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div
+                class="bg-orange-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm"
+              >
+                <label for="lundi-plat">Plat</label>
+                <select
+                  id="lundi-plat"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="bg-pink-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="lundi-dessert">Dessert</label>
+                <select
+                  id="lundi-dessert"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="font-semibold">Total : 0 DH / 50 DH max</div>
+              <button
+                    type="button"
+                    class="text-sm px-2 py-1 rounded-lg bg-amber-600 text-white hover:bg-amber-900"
+                  >
+                    Reserver
+            </button>
+            </article>
+
+
+            <article
+              class="border border-green-200 rounded-xl p-3 grid gap-2"
+            >
+              <strong>Mardi</strong>
+
+              <div class="bg-sky-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="Mardi-entree">Entrée</label>
+                <select
+                  id="Mardi-entree"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div
+                class="bg-orange-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm"
+              >
+                <label for="Mardi-plat">Plat</label>
+                <select
+                  id="Mardi-plat"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="bg-pink-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="lundi-dessert">Dessert</label>
+                <select
+                  id="lundi-dessert"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="font-semibold">Total : 0 DH / 50 DH max</div>
+              <button
+                    type="button"
+                    class="text-sm px-2 py-1 rounded-lg bg-amber-600 text-white hover:bg-amber-900"
+                  >
+                    Reserver
+            </button>
+            </article>
+
+            <article
+              class="border border-green-200 rounded-xl p-3 grid gap-2"
+            >
+              <strong>Mercredi</strong>
+
+              <div class="bg-sky-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="Mercredi-entree">Entrée</label>
+                <select
+                  id="Mercredi-entree"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div
+                class="bg-orange-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm"
+              >
+                <label for="Mercredi-plat">Plat</label>
+                <select
+                  id="Mercredi-plat"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="bg-pink-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="lundi-dessert">Dessert</label>
+                <select
+                  id="mercredi -dessert"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="font-semibold">Total : 0 DH / 50 DH max</div>
+              <button
+                    type="button"
+                    class="text-sm px-2 py-1 rounded-lg bg-amber-600 text-white hover:bg-amber-900"
+                  >
+                    Reserver
+            </button>
+            </article>
+
+            <article
+              class="border border-green-200 rounded-xl p-3 grid gap-2"
+            >
+              <strong>jeudi</strong>
+
+              <div class="bg-sky-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="jeudi-entree">Entrée</label>
+                <select
+                  id="jeudi-entree"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div
+                class="bg-orange-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm"
+              >
+                <label for="jeudi-plat">Plat</label>
+                <select
+                  id="jeudi-plat"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="bg-pink-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="lundi-dessert">Dessert</label>
+                <select
+                  id="jeudi-dessert"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="font-semibold">Total : 0 DH / 50 DH max</div>
+              <button
+                    type="button"
+                    class="text-sm px-2 py-1 rounded-lg bg-amber-600 text-white hover:bg-amber-900"
+                  >
+                    Reserver
+            </button>
+            </article>
+
+
+
+            <article
+              class="border border-green-200 rounded-xl p-3 grid gap-2"
+            >
+              <strong>vendredi</strong>
+
+              <div class="bg-sky-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="Mardi-entree">Entrée</label>
+                <select
+                  id="vendredi-entree"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div
+                class="bg-orange-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm"
+              >
+                <label for="vendredi-plat">Plat</label>
+                <select
+                  id="vendredi-plat"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="bg-pink-50 rounded-lg px-2 py-1.5 grid gap-1 text-sm">
+                <label for="vendredi-dessert">Dessert</label>
+                <select
+                  id="vendredi-dessert"
+                  class="w-full p-1 rounded-md border border-green-200 bg-white"
+                >
+                  <option value="">En réserve</option>
+                </select>
+              </div>
+
+              <div class="font-semibold">Total : 0 DH / 50 DH max</div>
+              <button
+                    type="button"
+                    class="text-sm px-2 py-1 rounded-lg bg-amber-600 text-white hover:bg-amber-900"
+                  >
+                    Reserver
+            </button>
+            </article>
+          </section>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
