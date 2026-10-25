@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cantine YouCode</title>
     <link rel="stylesheet" href="output.css" />
+    <link rel="stylesheet" href="cantina.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,6 +27,7 @@
 
         <div class="flex items-center gap-3">
           <button
+            id="btnTheme"
             type="button"
             class="bg-white px-3 py-2 rounded-xl hover:bg-gray-100"
           >
@@ -68,36 +70,8 @@
             <h2 class="font-semibold mb-3">Réserve de recettes</h2>
             <div class="grid gap-2" id="list">
               <!-- Carte modèle -->
-              <div class="border border-green-200 rounded-xl p-3 grid gap-2 " >  <!--card-->
-                <div class="flex items-center justify-between">
-                  <strong>Velouté de légumes</strong>
-                  <span>5 DH</span>
-                </div>
-                <div class="flex gap-2">
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-green-100"
-                    >Entrée</span
-                  >
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-green-100"
-                    >Végétarien</span
-                  >
-                </div>
-                <div class="flex gap-2">
-                  <button
-                    id="modifier"
-                    type="button"
-                    class="text-sm px-2 py-1 rounded-lg border border-green-300 hover:bg-green-100"
-                  >
-                    Modifier
-                  </button>
-                  <button
-                    id="supprimer"
-                    type="button"
-                    class="text-sm px-2 py-1 rounded-lg bg-red-600 text-white hover:bg-red-700"
-                  >
-                    Supprimer
-                  </button>
-                </div>
-              </div>
+              
+                
             </div>
           </section>
 
@@ -331,9 +305,8 @@
 
               <div class="font-semibold">Total : 0 DH / 50 DH max</div>
               <button
-                    type="button"
-                    class="text-sm px-2 py-1 rounded-lg bg-amber-600 text-white hover:bg-amber-900"
-                  >
+                    type="button"  
+                    class="text-sm px-2 py-1 rounded-lg bg-amber-600 text-white hover:bg-amber-900"   >
                     Reserver
             </button>
             </article>
@@ -363,7 +336,8 @@
 
     <div class="grid gap-1">
       <label for="prix">Prix (DH)</label>
-      <input type="number" id="prix" min="1" required class="border border-green-300 rounded-md p-2">
+      <input type="number" id="prix" min="1" required class="borde
+     border-green-300 rounded-md p-2">
     </div>
 
     <div class="grid gap-1">
@@ -385,5 +359,12 @@
 
     </main>
         <script src="cantina.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+      <script>
+        function addDarkmodeWidget() {
+        new Darkmode().showWidget();
+       }
+       window.addEventListener('load', addDarkmodeWidget);
+     </script>-->
   </body>
 </html>
