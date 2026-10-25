@@ -1,3 +1,4 @@
+
 /*
 const dialogue = document.querySelector("dialog");
 const form = document.getElementById("monForm");
@@ -34,16 +35,19 @@ const modal = document.getElementById("modal");
 const form = document.getElementById("monForm");
 const btnAjouter = document.getElementById("btn_Ajouter");
 const liste=document.getElementById("list");
-const modifier=document.getElementById("modifier");
+const modalTitre=document.querySelector("#modal h3");
 const btnTheme=document.getElementById("btnTheme")
-//const supprimer=document.getElementById("supprimer");
 //const valider=document.getElementById("btnValider");
 //const annuler=document.getElementById("btnAnnuler");
+let indexEnModification = null;
 
 const recettes=[]
 // Ouvrir
 btnAjouter.addEventListener("click", function () {
-    modal.hidden = false;
+  indexEnModification = null;
+  modalTitre.textContent = "Nouvelle recette";
+  form.reset();
+  modal.hidden = false;
 });
 
 // Fermer avec Annuler
@@ -51,7 +55,10 @@ form.addEventListener("reset", function () {
   modal.hidden=true;
 });
 //afficharge dans liste 
-function afficher(recette){
+function afficher(){
+  liste.innerHTML=''
+
+  recettes.forEach((recette, index) => {
    const cart = document.createElement('div');
    cart.className='border border-green-200 rounded-xl p-3 grid gap-2'
    cart.innerHTML=`
@@ -64,11 +71,30 @@ function afficher(recette){
             <span class="text-xs px-2 py-0.5 rounded-full bg-green-100">${recette.badge}</span>
          </div>
         <div class="flex gap-2">
-           <button type="button" class="text-sm px-2 py-1 rounded-lg border border-green-300 hover:bg-green-100">Modifier</button>
-           <button type="button" class="text-sm px-2 py-1 rounded-lg bg-red-600 text-white hover:bg-red-700">Supprimer</button>
+           <button type="button" class="btn-modifier text-sm px-2 py-1 rounded-lg border border-green-300 hover:bg-green-100">Modifier</button>
+           <button type="button" class="btn-supprimer text-sm px-2 py-1 rounded-lg bg-red-600 text-white hover:bg-red-700">Supprimer</button>
         </div>
         `
-         liste.appendChild(cart);
+        // Modifier la recette
+    cart.querySelector(".btn-modifier").addEventListener("click", function () {
+    indexEnModification = index;
+    modalTitre.textContent = "Modifier la recette";
+    document.getElementById("nom").value = recette.nom;
+    document.getElementById("categorie").value = recette.categorie;
+    document.getElementById("prix").value = recette.prix;
+    document.getElementById("badge").value = recette.badge;
+    modal.hidden = false;
+  });
+
+  // Supprimer la recette
+    cart.querySelector('.btn-supprimer').addEventListener("click", function () {
+      if(confirm("Voulez-vous supprimer cette recette ?")){
+      recettes.splice(index, 1);
+       afficher();}
+  });
+      liste.appendChild(cart);
+
+  });
            
 }
 
@@ -81,17 +107,27 @@ form.addEventListener("submit", function (e) {
     prix: Number(document.getElementById("prix").value),
     badge: document.getElementById("badge").value,
   };
-  recettes.push(recette)
-  afficher(recette)
-  form.reset()
+
+  if (indexEnModification === null) {
+    recettes.push(recette);                     // ajout
+  } else {
+    recettes[indexEnModification] = recette;    // modification
+  }
+
+  indexEnModification = null;
+  form.reset();     // kay-fermer l'modal
+  afficher();
+
 
 });
 
-//activer theme button
+//activer dark mood button
 btnTheme.addEventListener("click",function(){
   document.body.classList.toggle("dark");
 });
 
+// Affichage initial
+afficher();
 
 
 
