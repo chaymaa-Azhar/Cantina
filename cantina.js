@@ -34,7 +34,8 @@ const modal = document.getElementById("modal");
 const form = document.getElementById("monForm");
 const btnAjouter = document.getElementById("btn_Ajouter");
 const liste=document.getElementById("list");
-//const modifier=document.getElementById("modifier");
+const modifier=document.getElementById("modifier");
+const btnTheme=document.getElementById("btnTheme")
 //const supprimer=document.getElementById("supprimer");
 //const valider=document.getElementById("btnValider");
 //const annuler=document.getElementById("btnAnnuler");
@@ -49,6 +50,7 @@ btnAjouter.addEventListener("click", function () {
 form.addEventListener("reset", function () {
   modal.hidden=true;
 });
+//afficharge dans liste 
 function afficher(recette){
    const cart = document.createElement('div');
    cart.className='border border-green-200 rounded-xl p-3 grid gap-2'
@@ -56,8 +58,8 @@ function afficher(recette){
           <div class="flex items-center justify-between">
               <strong>${recette.nom}</strong>
               <span>${recette.prix} DH</span>
-              </div>
-          <div class="flex gap-2">
+           </div>
+      <div class="flex gap-2">
             <span class="text-xs px-2 py-0.5 rounded-full bg-green-100">${recette.categorie}</span>
             <span class="text-xs px-2 py-0.5 rounded-full bg-green-100">${recette.badge}</span>
          </div>
@@ -70,10 +72,9 @@ function afficher(recette){
            
 }
 
-// Valider
+// button Valider
 form.addEventListener("submit", function (e) {
    e.preventDefault();//pas refrecher la page 
-  //form.classList.toggle('hidden')
   const recette= {
     nom: document.getElementById("nom").value,
     categorie: document.getElementById("categorie").value,
@@ -84,10 +85,12 @@ form.addEventListener("submit", function (e) {
   afficher(recette)
   form.reset()
 
-  // form.reset() kay-déclenchi event "reset" li kay-khbbi l-modal
- 
 });
 
+//activer theme button
+btnTheme.addEventListener("click",function(){
+  document.body.classList.toggle("dark");
+});
 
 
 
