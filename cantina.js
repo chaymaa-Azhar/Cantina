@@ -1,52 +1,26 @@
 
-/*
-const dialogue = document.querySelector("dialog");
-const form = document.getElementById("monForm");
-//  boutons "Ajouter une recette"
-const btnAjouter = document.getElementById("btn_Ajouter");
-
-
-// Ouvrir le dialog
-btnAjouter.addEventListener("click", function () {
-  dialogue.showModal();
-});
-
-// Fermer avec Annuler
-form.addEventListener("reset", () => {
-  dialogue.close();
-});
-
-// Valider le formulaire
-form.addEventListener("submit", (e) => {
-  e.preventDefault(); // empêche le rechargement de la page
-
-  const recette = {
-    nom: document.getElementById("nom").value,
-    categorie: document.getElementById("categorie").value,
-    prix: Number(document.getElementById("prix").value),
-    badge: document.getElementById("badge").value,
-  };                                                                                                                             
-
-  console.log(recette); // pour tester, ensuite tu l'ajoutes à la réserve
-
-  dialogue.close();
-});*/
 const modal = document.getElementById("modal");
 const form = document.getElementById("monForm");
 const btnAjouter = document.getElementById("btn_Ajouter");
 const liste=document.getElementById("list");
 const modalTitre=document.querySelector("#modal h3");
-const btnTheme=document.getElementById("btnTheme")
+const btnTheme=document.getElementById("btnTheme");
 //const valider=document.getElementById("btnValider");
 //const annuler=document.getElementById("btnAnnuler");
 let indexEnModification = null;
-
+//const recette =JSON.parse(localStorage).getItem("recettes") || [];
 const recettes=[]
+let prochaineId=1;// compteur : donner nouvelle id a chaque recette
+let indexEnModifiecation=null; 
+
+/*categorie recette → maps select (tableau qui traduit )
+const T={"Entrée":"entrer","Plat":"plat","Dessert":"dessert"}*/
+
+
 // Ouvrir
 btnAjouter.addEventListener("click", function () {
   indexEnModification = null;
-  modalTitre.textContent = "Nouvelle recette";
-  form.reset();
+   modalTitre.textContent = "Nouvelle recette";
   modal.hidden = false;
 });
 
@@ -54,13 +28,60 @@ btnAjouter.addEventListener("click", function () {
 form.addEventListener("reset", function () {
   modal.hidden=true;
 });
+
+//filter
+function filter(select,categorie){
+  const valeurActuel=select.value 
+  const recetteFilter=recettes.filter(function(recette){ // filter les recette de categorie = categorie
+    return recette.categorie === categorie;
+  });
+  select.innerHTML= '<option value="">En réserve</option>';
+  recetteFilter.forEach(function(recette){
+    const option = document.createElement("option");
+    option.value=recette.id;
+    option.textContent=recette.nom + "(+" + recette.prix + " DH)";
+    select.appendChild(option);
+  });
+  select.value = valeurActuel; // choix
+  if(select.selectedIndex===-1){
+    select.value="";
+  }
+}
+
+function afficherSelects() {
+  document.querySelectorAll('select[id$="-entree"]').forEach(function (select) {
+    filter(select, "Entrée");
+  });
+  document.querySelectorAll('select[id$="-plat"]'/*endswidths*/).forEach(function (select) {
+    filter(select, "Plat");
+  });
+  document.querySelectorAll('select[id$="-dessert"]').forEach(function (select) {
+    filter(select, "Dessert");
+  });
+}
+
+
+
+
 //afficharge dans liste 
 function afficher(){
-  liste.innerHTML=''
-
+  liste.innerHTML='' //avant utiliser afficher un autre repas 
   recettes.forEach((recette, index) => {
    const cart = document.createElement('div');
    cart.className='border border-green-200 rounded-xl p-3 grid gap-2'
+   //
+  //  const estAssignee=recette.jour !== null;
+  //  //reccette deja utiliser dans menu
+  //  if(estAssignee){
+  //   cart.style.opacity="0.5"; //transparente
+  //  }
+  //  let texteAssigne=''
+  //  if(estAssignee){
+  //   texteAssigne=
+  //   '<div class="text-xs font-semibold capitalize"> [Assigne: '+ recette.jour + " - " + T[recette.plat]+'] <div>'
+  //  }
+
+   
    cart.innerHTML=`
           <div class="flex items-center justify-between">
               <strong>${recette.nom}</strong>
@@ -77,6 +98,11 @@ function afficher(){
         `
         // Modifier la recette
     cart.querySelector(".btn-modifier").addEventListener("click", function () {
+      //regle pas modifier recette dans le projet 
+      if(recette.jour !== null){
+        alert("tu ne peut pas modifier")
+        return;
+      }
     indexEnModification = index;
     modalTitre.textContent = "Modifier la recette";
     document.getElementById("nom").value = recette.nom;
@@ -95,13 +121,16 @@ function afficher(){
       liste.appendChild(cart);
 
   });
-           
+  afficherSelects()
 }
+
+
 
 // button Valider
 form.addEventListener("submit", function (e) {
    e.preventDefault();//pas refrecher la page 
   const recette= {
+    id:prochaineId++,
     nom: document.getElementById("nom").value,
     categorie: document.getElementById("categorie").value,
     prix: Number(document.getElementById("prix").value),
@@ -112,9 +141,7 @@ form.addEventListener("submit", function (e) {
     recettes.push(recette);                     // ajout
   } else {
     recettes[indexEnModification] = recette;    // modification
-  }
-
-  indexEnModification = null;
+  }         
   form.reset();     // kay-fermer l'modal
   afficher();
 
@@ -128,6 +155,9 @@ btnTheme.addEventListener("click",function(){
 
 // Affichage initial
 afficher();
+
+
+
 
 
 
