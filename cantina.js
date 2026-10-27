@@ -13,9 +13,6 @@ const recettes=[]
 let prochaineId=1;// compteur : donner nouvelle id a chaque recette
 let indexEnModifiecation=null; 
 
-/*categorie recette → maps select (tableau qui traduit )
-const T={"Entrée":"entrer","Plat":"plat","Dessert":"dessert"}*/
-
 
 // Ouvrir
 btnAjouter.addEventListener("click", function () {
@@ -46,7 +43,11 @@ function filter(select,categorie){
   if(select.selectedIndex===-1){
     select.value="";
   }
-}
+
+  
+ 
+};
+
 
 function afficherSelects() {
   document.querySelectorAll('select[id$="-entree"]').forEach(function (select) {
@@ -58,6 +59,9 @@ function afficherSelects() {
   document.querySelectorAll('select[id$="-dessert"]').forEach(function (select) {
     filter(select, "Dessert");
   });
+
+
+
 }
 
 
@@ -69,19 +73,6 @@ function afficher(){
   recettes.forEach((recette, index) => {
    const cart = document.createElement('div');
    cart.className='border border-green-200 rounded-xl p-3 grid gap-2'
-   //
-  //  const estAssignee=recette.jour !== null;
-  //  //reccette deja utiliser dans menu
-  //  if(estAssignee){
-  //   cart.style.opacity="0.5"; //transparente
-  //  }
-  //  let texteAssigne=''
-  //  if(estAssignee){
-  //   texteAssigne=
-  //   '<div class="text-xs font-semibold capitalize"> [Assigne: '+ recette.jour + " - " + T[recette.plat]+'] <div>'
-  //  }
-
-   
    cart.innerHTML=`
           <div class="flex items-center justify-between">
               <strong>${recette.nom}</strong>
@@ -119,7 +110,10 @@ function afficher(){
        afficher();}
   });
       liste.appendChild(cart);
-
+      //assigne trasparent text
+      if(recette.jour !== null){
+        cart.style.opacity = '0.5';
+      }
   });
   afficherSelects()
 }
@@ -129,24 +123,31 @@ function afficher(){
 // button Valider
 form.addEventListener("submit", function (e) {
    e.preventDefault();//pas refrecher la page 
-  const recette= {
-    id:prochaineId++,
-    nom: document.getElementById("nom").value,
-    categorie: document.getElementById("categorie").value,
-    prix: Number(document.getElementById("prix").value),
-    badge: document.getElementById("badge").value,
-  };
+   
 
   if (indexEnModification === null) {
-    recettes.push(recette);                     // ajout
+    recettes.push({
+      id:prochaineId++,
+      jour:null,
+      nom:document.getElementById('nom').value,
+      categorie:document.getElementById('categorie').value,
+      prix:Number(document.getElementById('prix').value),
+      badge:document.getElementById('badge').value,
+    });                     
   } else {
-    recettes[indexEnModification] = recette;    // modification
+        const r=recettes[indexEnModification]
+        r.nom = document.getElementById("nom").value;
+        r.categorie = document.getElementById("categorie").value;
+        r.prix = Number(document.getElementById("prix").value);
+        r.badge = document.getElementById("badge").value;
   }         
   form.reset();     // kay-fermer l'modal
   afficher();
 
 
 });
+
+
 
 //activer dark mood button
 btnTheme.addEventListener("click",function(){
